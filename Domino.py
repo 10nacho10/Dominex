@@ -54,3 +54,22 @@ def generacion():
 def test_generacion():
     fichasDom = [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6), (2, 0), (2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (2, 6), (3, 0), (3, 1), (3, 2), (3, 3), (3, 4), (3, 5), (3, 6), (4, 0), (4, 1), (4, 2), (4, 3), (4, 4), (4, 5), (4, 6), (5, 0), (5, 1), (5, 2), (5, 3), (5, 4), (5, 5), (5, 6), (6, 0), (6, 1), (6, 2), (6, 3), (6, 4), (6, 5), (6, 6)]
     assert generacion() == fichasDom
+
+# Repreentaremos cada ficha como una tupla y al conjunto de fichas como una lista de tuplas.
+# buscador: Tuple, List -> Bool
+# Toma una ficha y una lista con fichas, devuelve un True si la ficha se encuentra en esa lista
+# de fichas, en caso contrario devuelve un False.
+# Entrada: (3, 6), [(0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (1, 0)]; Salida: False.
+# Entrada: (1, 1), [(0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (1, 1), (6, 6)]; Salida: True.
+# Entrada: (5, 5), [(2, 0), (2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (2, 6), (3, 0), (3, 1), (3, 2), (3, 3)]; Salida: False.
+def buscador(ficha, listFichas):
+    """Entrega si la ficha se encuentra en esa lista de fichas."""
+    for f in listFichas:
+        if f == ficha:
+            return True
+    return False
+
+def test_buscador():
+    assert buscador((3, 6), [(0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (1, 0)]) == False
+    assert buscador((1, 1), [(0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (1, 1), (6, 6)]) == True
+    assert buscador((5, 5), [(2, 0), (3, 1), (3, 2), (3, 3)]) == False
