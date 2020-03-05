@@ -38,3 +38,19 @@ def test_admitidas():
     assert admitidas((1, 1)) == True
     assert admitidas((9, 2)) == False
     assert admitidas((5, 6)) == True
+
+# Representaremos cada ficha como una tupla
+# generacion: None -> List
+# Entrega una Lista con todas las fichas del domino en forma de tuplas.
+# Entrada: None; Salida: ((0, 0), (0, 1), ... , (6, 6))
+def generacion():
+    """Devuelve una Tuple con todas las fichas del domino"""
+    fichasDom = []
+    for numero1 in range(0,7):
+        for numero2 in range(0,7):
+            fichasDom += (numero1, numero2),
+    return fichasDom
+
+def test_generacion():
+    fichasDom = [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6), (2, 0), (2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (2, 6), (3, 0), (3, 1), (3, 2), (3, 3), (3, 4), (3, 5), (3, 6), (4, 0), (4, 1), (4, 2), (4, 3), (4, 4), (4, 5), (4, 6), (5, 0), (5, 1), (5, 2), (5, 3), (5, 4), (5, 5), (5, 6), (6, 0), (6, 1), (6, 2), (6, 3), (6, 4), (6, 5), (6, 6)]
+    assert generacion() == fichasDom
