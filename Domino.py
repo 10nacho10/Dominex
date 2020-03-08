@@ -1,6 +1,15 @@
-import pytest
-from random import *
-
+# Librerias:
+import pytest  # Libreria para casos de prueba 
+from random import * # Libreria para utilizar las funciones de azar
+#-----------------------------------------------------------------------------------------------
+# Video de guia utilizado: 
+#-----------------------------------------------------------------------------------------------
+# Tabla exponencial de fichas en el domino(de la ficha mas chica a la mas grande):
+# [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (1, 1), (1, 2), (1, 3),
+# (1, 4), (1, 5), (1, 6), (2, 2), (2, 3), (2, 4), (2, 5), (2, 6), (3, 3), (3, 4),
+# (3, 5), (3, 6), (4, 4), (4, 5), (4, 6), (5, 5), (5, 6), (6, 6)]
+# PD: ESTO SE BASA EN EL CONJUNTO DE FICHA DEL (0, 0) AL (6, 6)
+#-----------------------------------------------------------------------------------------------
 # Representaremos los valores de entrada del domino como tuplas; siendo:
 # (numero1, numero2), (numero3, numnero3).
 # encajan: Tuple Tuple -> Bool
@@ -49,11 +58,12 @@ def generacion():
     fichasDom = []
     for numero1 in range(0,7):
         for numero2 in range(0,7):
-            fichasDom += (numero1, numero2),
+            if numero1 <= numero2:
+                fichasDom += (numero1, numero2),
     return fichasDom
 
 def test_generacion():
-    fichasDom = [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6), (2, 0), (2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (2, 6), (3, 0), (3, 1), (3, 2), (3, 3), (3, 4), (3, 5), (3, 6), (4, 0), (4, 1), (4, 2), (4, 3), (4, 4), (4, 5), (4, 6), (5, 0), (5, 1), (5, 2), (5, 3), (5, 4), (5, 5), (5, 6), (6, 0), (6, 1), (6, 2), (6, 3), (6, 4), (6, 5), (6, 6)]
+    fichasDom = [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6), (2, 2), (2, 3), (2, 4), (2, 5), (2, 6), (3, 3), (3, 4), (3, 5), (3, 6), (4, 4), (4, 5), (4, 6), (5, 5), (5, 6), (6, 6)]
     assert generacion() == fichasDom
 
 # Representaremos cada ficha como una tupla y al conjunto de fichas como una lista de tuplas.
@@ -202,4 +212,18 @@ def repartidor(player, fichMax, listaFichas):
             listaFichas[listaFichas.index(listaFichas[random7]):listaFichas.index(listaFichas[random7])+1] = []
         jugadores += jugador1, jugador2, jugador3, jugador4, jugador5, jugador6, jugador7
         return jugadores
-    
+
+# Representaremos las fichas del domino como tuplas y al conjunto de las mismas como una lista
+# de tuplas.
+# Reglas:
+# · Cada jugador comenzara con 7 fichas
+# · Cada jugador tendra un turno, luego seguira el de la derecha, es decir si fue el jugador1
+#   luego tendra su turno el jugador2.
+# · Empiza el jugador con la ficha mas alta, es decir si tenemos un (0, 9) y un (3, 0), se elejira
+#   la ficha mas alta que es (3, 0), como se muestra en la tabla e fichas arriba.
+# · El jugador debera ingresar un
+# domino: Str -> Str
+# Toma la cantidad de jugadores y los nombres, entrega las fichas y comienza el juego. El
+# juego termina cuando el primero de los jugadores quede sin fichas. Entrega en forma de mensaje
+# el juego a concluido con el nombre del ganador.
+#
